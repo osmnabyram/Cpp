@@ -1,0 +1,98 @@
+#include <iostream>
+#include <Windows.h>
+
+using namespace std;
+
+void u()
+{
+	Sleep(2000);
+}
+
+void t()
+{
+	system("cls");
+}
+
+int hesap(int x)
+{
+    int carpim = 1;
+    int maks = 10;
+    int ek = 50;
+    int sonuc = 0;
+    int sonuc2 = 1;
+
+    if (x >= 1000 && x <= maks * 50)
+    {
+        sonuc2 = carpim * (maks * (100 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 50 && x <= maks * 150)
+    {
+        sonuc2 = carpim * (maks * (200 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 150 && x <= maks * 250)
+    {
+        sonuc2 = carpim * (maks * (300 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 250 && x <= maks * 400)
+    {
+        sonuc2 = carpim * (maks * (450 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 400 && x <= maks * 500)
+    {
+        sonuc2 = carpim * (maks * (550 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 500 && x <= maks * 600)
+    {
+        sonuc2 = carpim * (maks * (700 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 600 && x <= maks * 800)
+    {
+        sonuc2 = carpim * (maks * (850 + 50));
+        sonuc = sonuc2 + ek;
+    }
+    else if (x > maks * 800)
+    {
+        sonuc2 = carpim * (1500 + 50);
+        sonuc = sonuc2 + ek;
+    }
+
+    return sonuc;
+}
+
+
+int main()
+{
+	int mesafe;
+	int baslangıcucret;
+	cout << "_-Taksimetre sistem-_" << endl;
+	u();
+	t();
+	cout << "Ne kadar uzak bir mesafeye gidiliecek" << endl;
+	u();
+	t();
+	cout << "gidilen mesafe km cinsinden girilmeli (1kmden kisa yollar gidilmez)" << endl;
+	u();
+	cin >> mesafe;
+	t();
+	
+		for (int i = 0; i <= mesafe; i++)
+		{
+			cout << "guncel gidilen yol: " << i << " km" << endl;
+			u();
+			if (i == mesafe)
+			{
+				t();
+				cout << "hedefe varilmistir..." << endl;
+				Sleep(1000);
+				t();
+				cout << "borcunuz " << hesap(i * 1000) << " tl" << endl;
+				return 0;
+			}
+		}
+}

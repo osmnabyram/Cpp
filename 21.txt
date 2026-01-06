@@ -1,0 +1,170 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <math.h>
+#include <windows.h>
+#include <cstdlib>
+
+using namespace std;
+
+void kurallar()
+{
+    cout << "-KURALLAR-" << endl;
+    cout << endl;
+    cout << "-> sirayla bilgisayara ve kullaniciya bir kart verilir" << endl;
+    cout << "-> hangi taraf 21'i gecmeyip 21'e en yakin sayiya ulasirsa kazanmis olur" << endl;
+    cout << "-> eger iki tarafin degerleri esit cikarsa oyun berabere biter" << endl;
+    cout << endl;
+}
+
+int kartcek(int bas, int bit)
+{
+    return bas + rand() % (bit - bas + 1);
+}
+
+int main()
+{
+    int kuralsecim;
+    int istek;
+    int start;
+    int kullaniciikincikart = 0;
+    int bilgisayarikincikart;
+    int kullanicitoplam = 0;
+    int bilgisayartoplam = 0;
+    int winnotes[] = { 784, 880, 988, 1174, 1318, 1396, 1568 };
+    int windurations[] = { 200, 200, 200, 200, 200, 200, 400 };
+    int losenotes[] = { 330, 294, 262 };
+    int losedurations[] = { 500, 500, 1000 };
+    int drawnotes[] = { 392, 330, 294, 262, 330, 349, 294 };
+    int drawdurations[] = { 400, 200, 200, 400, 200, 200, 600 };
+y:  system("cls");
+    cout << endl;
+    cout << "_-21 HOSGELDINIZ-_" << endl;
+    cout << endl;
+    cout << "baslamak icin 0 basin" << endl;
+    cout << "kurallari okumak icin 1 basin" << endl;
+    cin >> kuralsecim;
+    cout << endl;
+
+    srand(time(NULL));
+
+    switch (kuralsecim)
+    {
+    case 1:
+        kurallar();
+        break;
+    case 0:
+        break;
+    default:
+        cout << "hatali secim" << endl;
+        cout << "bir daha secin" << endl;
+        goto y;
+    }
+
+a:  cout << "KART CEK (0 bas)" << endl;
+    cin >> start;
+    cout << endl;
+
+    if (start == 0)
+    {
+        int kullaniciikkart = kartcek(10, 15);
+        cout << "ILK GELEN DEGERINIZ: " << kullaniciikkart << endl;
+        cout << endl;
+
+        cout << "-SIRA BILGISAYARDA-" << endl;
+        int bilgisayarilkkart = kartcek(10, 15);
+        cout << "ILK BILGISAYAR DEGERI: " << bilgisayarilkkart << endl;
+        cout << endl;
+
+    z:     cout << "KART CEK (0 bas)" << endl;
+        cin >> start;
+        cout << endl;
+
+        if (start == 0)
+        {
+            kullaniciikkart = kartcek(5, 8);
+            kullanicitoplam = kullaniciikkart + bilgisayarilkkart;
+            cout << "GUNCEL DEGERINIZ: " << kullanicitoplam << endl;
+            cout << endl;
+
+            cout << "-SIRA BILGISAYARDA-" << endl;
+            bilgisayarikincikart = kartcek(5, 8);
+            bilgisayartoplam = bilgisayarilkkart + bilgisayarikincikart;
+            cout << "BILGISAYARIN GUNCEL DEGERI: " << bilgisayartoplam << endl;
+        }
+        else
+        {
+            cout << "hatali secim" << endl;
+            goto z;
+        }
+    }
+    else {
+        cout << "hatali secim" << endl;
+        cout << "tekrar secin" << endl;
+        goto a;
+    }
+
+    if (kullanicitoplam <= 21 && bilgisayartoplam > 21)
+    {
+    s:      cout << endl;
+        cout << "__--KAZANDINIZ--__" << endl;
+
+        for (int i = 0; i < 7; ++i)
+        {
+            Beep(winnotes[i], windurations[i]);
+            Sleep(100);
+        }
+    }
+    else if (bilgisayartoplam <= 21 && kullanicitoplam > 21)
+    {
+    d:  cout << endl;
+        cout << "__--BILGISAYAR KAZANDI--__" << endl;
+        for (int i = 0; i < 3; ++i)
+        {
+            Beep(losenotes[i], windurations[i]);
+            Sleep(100);
+        }
+
+    }
+    else if (kullanicitoplam > bilgisayartoplam)
+    {
+        goto s;
+    }
+    else if (bilgisayartoplam > kullanicitoplam)
+    {
+        goto d;
+    }
+    else if (bilgisayartoplam = kullanicitoplam)
+    {
+        cout << endl;
+        cout << "__--BERABERE--__" << endl;
+        for (int i = 0; i < 7; ++i)
+        {
+            Beep(drawnotes[i], drawdurations[i]);
+            Sleep(100);
+        }
+    }
+    else
+    {
+        cout << endl;
+        cout << endl;
+        cout << "kodda bir hata var";
+    }
+    cout << endl;
+    cout << endl;
+k:  cout << "Tekrar oynamak icin 1" << endl;
+    cout << "Cikmak icin ise 0 basin" << endl;
+    cin >> istek;
+    switch (istek)
+    {
+    case 1:
+        goto y;
+
+    case 0:
+        return 0;
+    default:
+        cout << "hatali secim" << endl;
+        cout << "bir daha secin" << endl;
+        goto k;
+    }
+}

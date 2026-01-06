@@ -1,0 +1,100 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <math.h>
+#include <windows.h>
+
+using namespace std;
+
+void ses()
+{
+	Beep(330, 250);
+	Beep(392, 250);
+	Beep(440, 500);
+	Beep(392, 500);
+	Beep(0, 250);
+	Beep(440, 250);
+	Beep(494, 250);
+	Beep(523, 500);
+	Beep(0, 250);
+}
+
+
+int main()
+{
+	int sayi;
+	string istek;
+	int bas;
+	int bit;
+a:	system("cls");
+	cout << "SAYI TAHMINE HOSGELDINIZ" << endl;
+	cout << "hangi sayi araliginda tahmin yapmak istiyorsun" << endl;
+	ses();
+	cin >> bas;
+	cin >> bit;
+
+	if (bas >= bit)
+	{
+		cout << "baslangic sayisi son degere esit veya buyuk olamaz" << endl;
+		goto a;
+	}
+
+	cout << "bir sayi tut" << endl;
+	cin >> sayi;
+
+	srand(time(0) * 139);
+
+	int aralik = bit - bas;
+
+z:	int pcsecim = bas + (rand() % aralik);
+
+	if (pcsecim == bas || pcsecim == bit)
+	{
+		goto z;
+	}
+
+	if (sayi == pcsecim)
+	{
+		cout << "WIN" << endl;
+		cout << "dogru cevap: " << pcsecim << endl;
+	b:		cout << "bir kez daha oynamak ister misin? (evet-hayir)" << endl;
+		cin >> istek;
+		cout << endl;
+		if (istek == "evet")
+		{
+			goto a;
+		}
+		else if (istek == "hayir")
+		{
+			return 0;
+		}
+		else
+		{
+			cout << "hatali secim" << endl;
+			goto b;
+		}
+
+	}
+	else if (sayi != pcsecim)
+	{
+		cout << "LOSE" << endl;
+		cout << "dogru cevap: " << pcsecim << endl;
+	c:		cout << "bir kez daha oynamak ister misin? (evet-hayir)" << endl;
+		cin >> istek;
+		cout << endl;
+		if (istek == "evet")
+		{
+			goto a;
+		}
+		else if (istek == "hayir")
+		{
+			return 0;
+		}
+		else
+		{
+			cout << "hatali secim" << endl;
+			goto c;
+		}
+	}
+	return 0;
+}

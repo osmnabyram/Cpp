@@ -1,0 +1,83 @@
+#include <iostream>
+#include <windows.h>
+#include <stdlib.h>
+
+using namespace std;
+
+int carp(int x, int y)
+{
+	int sonuc;
+	sonuc = x * y;
+	cout << "sonuc: " << sonuc << endl;
+	return sonuc;
+}
+
+int bol(int x, int y)
+{
+	int sonuc;
+	if (y != 0)
+	{
+		sonuc = x / y;
+		cout << "sonuc: " << sonuc << endl;
+		return sonuc;
+	}
+	else
+	{
+		cout << "0'a bolum olmaz" << endl;
+	}
+}
+
+int cık(int x, int y)
+{
+	int sonuc;
+	sonuc = x - y;
+	cout << "sonuc: " << sonuc << endl;
+	return sonuc;
+}
+
+int top(int x, int y)
+{
+	int sonuc;
+	sonuc = x + y;
+	cout << "sonuc: " << sonuc << endl;
+	return sonuc;
+}
+
+int main()
+{
+	int x, y, islem;
+a:
+	system("cls");
+	cout << "hangi sayilar ile islem yapmak istiyorsunuz" << endl;
+	cout << "birince deger:" << endl;
+	cin >> x;
+	cout << "ikinci deger: " << endl;
+	cin >> y;
+	cout << "hangi islemi yapmak istiyorsunuz" << endl;
+	cout << "1-toplama" << endl;
+	cout << "2-cikartma" << endl;
+	cout << "3-carpma" << endl;
+	cout << "4-bolme" << endl;
+	cin >> islem;
+	switch (islem)
+	{
+	case 1:
+		top(x, y);
+		break;
+	case 2:
+		cık(x, y);
+		break;
+	case 3:
+		carp(x, y);
+		break;
+	case 4:
+		bol(x, y);
+		break;
+	default:
+		cout << "hatali islem secimi" << endl;
+		break;
+	}
+	Sleep(5000);
+	goto a;
+	return 0;
+}

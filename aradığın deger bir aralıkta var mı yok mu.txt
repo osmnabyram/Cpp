@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+void islem(int x)
+{
+	if (x > 0 && x < 100)
+	{
+		cout << "var" << endl;
+	}
+	else
+	{
+		cout << "yok" << endl;
+	}
+}
+
+int main()
+{
+	int gir;
+	cout << "bir deger giriniz" << endl;
+	cin >> gir;
+	islem(gir);
+}

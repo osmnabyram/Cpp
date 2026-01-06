@@ -1,0 +1,275 @@
+#include <iostream>
+#include <stdlib.h>
+#include <Windows.h>
+
+using namespace std;
+
+void ses()
+{
+    Beep(330, 250);
+    Beep(392, 250);
+    Beep(440, 500);
+    Beep(392, 500);
+    Beep(0, 250);
+    Beep(440, 250);
+    Beep(494, 250);
+    Beep(523, 500);
+    Beep(0, 250);
+}
+
+void oyuntahtasinigoster(char oyuntahtasi[3][3])
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            cout << oyuntahtasi[i][j];
+            if (j < 2)
+            {
+                cout << " | ";
+            }
+        }
+        cout << endl;
+        if (i < 2)
+        {
+            cout << "-----------" << endl;
+        }
+    }
+}
+
+void hamleyiyerlestir(char oyuntahtasi[3][3], int satir, int sutun, char oyuncu)
+{
+    oyuntahtasi[satir][sutun] = oyuncu;
+}
+
+bool oyunbittimi(char oyuntahtasi[3][3])
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        if (oyuntahtasi[i][0] != ' ' && oyuntahtasi[i][0] == oyuntahtasi[i][1] && oyuntahtasi[i][0] == oyuntahtasi[i][2])
+        {
+            return true;
+        }
+    }
+
+    for (int j = 0; j < 3; ++j)
+    {
+        if (oyuntahtasi[0][j] != ' ' && oyuntahtasi[0][j] == oyuntahtasi[1][j] && oyuntahtasi[0][j] == oyuntahtasi[2][j])
+        {
+            return true;
+        }
+    }
+
+    if (oyuntahtasi[0][0] != ' ' && oyuntahtasi[0][0] == oyuntahtasi[1][1] && oyuntahtasi[0][0] == oyuntahtasi[2][2])
+    {
+        return true;
+    }
+    if (oyuntahtasi[0][2] != ' ' && oyuntahtasi[0][2] == oyuntahtasi[1][1] && oyuntahtasi[0][2] == oyuntahtasi[2][0])
+    {
+        return true;
+    }
+
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            if (oyuntahtasi[i][j] == ' ')
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool beraberlikmi(char oyuntahtasi[3][3])
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            if (oyuntahtasi[i][j] == ' ')
+            {
+                return false;
+            }
+        }
+    }
+}
+
+int main()
+{
+    int harfsecim;
+    int istek;
+    int winnotes[] = { 784, 880, 988, 1174, 1318, 1396, 1568 };
+    int windurations[] = { 200, 200, 200, 200, 200, 200, 400 };
+    int drawnotes[] = { 392, 330, 294, 262, 330, 349, 294 };
+    int drawdurations[] = { 400, 200, 200, 400, 200, 200, 600 };
+
+
+
+y:
+    system("cls");
+    cout << "__--XOX HOSGELDINIZ--__" << endl;
+    ses();
+    cout << "oyuna basmadan once 1.Oyuncu taraf secmeli:" << endl;
+    cout << endl;
+a:
+    cout << "X secmek icin: " << endl;
+    cout << "1 basin" << endl;
+    cout << endl;
+    Sleep(1000);
+    cout << "o secmek icin: " << endl;
+    cout << "0 basin" << endl;
+    cin >> harfsecim;
+
+    while (harfsecim != 1 && harfsecim != 0)
+    {
+        cout << "hatali giris" << endl;
+        cout << "tekrar girin" << endl;
+        cin >> harfsecim;
+    }
+
+    if (harfsecim == 1)
+    {
+        char oyuncu1 = 'X';
+        char oyuncu2 = 'O';
+
+        char oyuntahtasi[3][3] = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+
+        int satir, sutun;
+        char oyuncu = oyuncu1;
+
+        while (true)
+        {
+            oyuntahtasinigoster(oyuntahtasi);
+            cout << "Oynama sirasi " << oyuncu << "'da" << endl;
+            cout << "Bir satir ve sutun secin(1 - 3 arasi) : " << endl;
+            cin >> satir >> sutun;
+            --satir;
+            --sutun;
+            cout << endl;
+
+            if (satir < 0 || satir >= 3 || sutun < 0 || sutun >= 3 || oyuntahtasi[satir][sutun] != ' ')
+            {
+                cout << "hatali secim" << endl;
+                cout << "tekrar secim yapin" << endl;
+                continue;
+            }
+
+            hamleyiyerlestir(oyuntahtasi, satir, sutun, oyuncu);
+
+            if (oyunbittimi(oyuntahtasi))
+            {
+                oyuntahtasinigoster(oyuntahtasi);
+                cout << "KAZANDINIZ" << endl;
+                for (int i = 0; i < 7; ++i)
+                {
+                    Beep(winnotes[i], windurations[i]);
+                    Sleep(100);
+                }
+                break;
+            }
+            if (beraberlikmi(oyuntahtasi))
+            {
+                cout << "OYUN BERABERE!" << endl;
+                for (int i = 0; i < 7; ++i)
+                {
+                    Beep(drawnotes[i], drawdurations[i]);
+                    Sleep(100);
+                }
+                break;
+            }
+
+            if (oyuncu == oyuncu1)
+            {
+                oyuncu = oyuncu2;
+            }
+            else
+            {
+                oyuncu = oyuncu1;
+            }
+        }
+    }
+    else if (harfsecim == 0)
+    {
+        char oyuncu1 = 'O';
+        char oyuncu2 = 'X';
+
+        char oyuntahtasi[3][3] = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+
+        int satir, sutun;
+        char oyuncu = oyuncu1;
+
+        while (true)
+        {
+            oyuntahtasinigoster(oyuntahtasi);
+            cout << "Oynama sirasi " << oyuncu << "'da" << endl;
+            cout << "Bir satir ve sutun secin(1 - 3 arasi) : " << endl;
+            cin >> satir >> sutun;
+            --satir;
+            --sutun;
+            cout << endl;
+
+            if (satir < 0 || satir >= 3 || sutun < 0 || sutun >= 3 || oyuntahtasi[satir][sutun] != ' ')
+            {
+                cout << "hatali secim" << endl;
+                cout << "tekrar secim yapin" << endl;
+                continue;
+            }
+
+            hamleyiyerlestir(oyuntahtasi, satir, sutun, oyuncu);
+
+            if (oyunbittimi(oyuntahtasi))
+            {
+                oyuntahtasinigoster(oyuntahtasi);
+                cout << "KAZANDINIZ" << endl;
+                for (int i = 0; i < 7; ++i)
+                {
+                    Beep(winnotes[i], windurations[i]);
+                    Sleep(100);
+                }
+                break;
+            }
+            if (beraberlikmi(oyuntahtasi))
+            {
+                cout << "OYUN BERABERE!" << endl;
+                for (int i = 0; i < 7; ++i)
+                {
+                    Beep(drawnotes[i], drawdurations[i]);
+                    Sleep(100);
+                }
+                break;
+            }
+
+            if (oyuncu == oyuncu1)
+            {
+                oyuncu = oyuncu2;
+            }
+            else
+            {
+                oyuncu = oyuncu1;
+            }
+        }
+    }
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+k:
+    cout << "Tekrar oynamak icin 1" << endl;
+    cout << "Cikmak icin ise 0 basin" << endl;
+    cin >> istek;
+    switch (istek)
+    {
+    case 1:
+        goto y;
+    case 0:
+        return 0;
+    default:
+        cout << "hatali secim" << endl;
+        cout << "bir daha secin" << endl;
+        goto k;
+    }
+
+    return 0;
+}

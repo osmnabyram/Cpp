@@ -1,0 +1,199 @@
+#include <iostream>
+#include <cstdlib>
+#include <math.h>
+#include <string>
+#include <ctime>
+#include <windows.h>
+
+using namespace std;
+
+void ses()
+{
+    Beep(330, 250);
+    Beep(392, 250);
+    Beep(440, 500);
+    Beep(392, 500);
+    Beep(0, 250);
+    Beep(440, 250);
+    Beep(494, 250);
+    Beep(523, 500);
+    Beep(0, 250);
+}
+
+int main()
+{
+    string secim;
+    int secim2;
+    int pcsecim;
+    int bas, bit;
+    int aralik;
+
+a:  system("cls");
+    cout << "-------------------" << endl;
+    cout << "--TAS KAGIT MAKAS--" << endl;
+    cout << "-------------------" << endl;
+    ses();
+    cout << endl;
+    cout << "SECIM YAPIN(tas kagit makas)" << endl;
+    cout << endl;
+
+    cin >> secim;
+    cout << endl;
+    srand(time(0));
+
+    bas = 1;
+    bit = 4;
+    aralik = bit - bas;
+
+    pcsecim = bas + rand() % aralik;
+
+    if (secim == "tas")
+    {
+
+        if (pcsecim == 1)
+        {
+            cout << "-BERABERE-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayarda tas secmisti" << endl;
+            cout << endl;
+            goto a;
+        }
+        else if (pcsecim == 2)
+        {
+            cout << "-LOSE-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayar kagiti secmisti" << endl;
+            cout << "kagit tasi yener" << endl;
+            cout << endl;
+            cout << "OYUNA DEVAM ETMEK ISTIYOR MUSUN?" << endl;
+            cout << "evet icin 1 - hayir icin 0" << endl;
+            cin >> secim2;
+            switch (secim2)
+            {
+            case 1:
+                goto a;
+            case 0:
+                return 0;
+            }
+        }
+        else if (pcsecim == 3)
+        {
+            cout << "-WIN-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayar makasi secmisti" << endl;
+            cout << "tas makasi yener" << endl;
+            cout << endl;
+            cout << "OYUNA DEVAM ETMEK ISTIYOR MUSUN?" << endl;
+            cout << "evet icin 1 - hayir icin 0" << endl;
+            cin >> secim2;
+            switch (secim2)
+            {
+            case 1:
+                goto a;
+            case 0:
+                return 0;
+            }
+        }
+    }
+
+    else if (secim == "kagit")
+    {
+        if (pcsecim == 1)
+        {
+            cout << "-WIN-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayar tas secmisti" << endl;
+            cout << "kagit tasi yener" << endl;
+            cout << "OYUNA DEVAM ETMEK ISTIYOR MUSUN?" << endl;
+            cout << "evet icin 1 - hayir icin 0" << endl;
+            cin >> secim2;
+            switch (secim2)
+            {
+            case 1:
+                goto a;
+            case 0:
+                return 0;
+            }
+        }
+        else if (pcsecim == 2)
+        {
+            cout << "-BERABERE-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayarda kagit secmisti" << endl;
+            cout << endl;
+            goto a;
+        }
+        else if (pcsecim == 3)
+        {
+            cout << "-LOSE-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayar makas secmisti" << endl;
+            cout << "makas kagiti yener" << endl;
+            cout << endl;
+            cout << "OYUNA DEVAM ETMEK ISTIYOR MUSUN?" << endl;
+            cout << "evet icin 1 - hayir icin 0" << endl;
+            cin >> secim2;
+            switch (secim2)
+            {
+            case 1:
+                goto a;
+            case 0:
+                return 0;
+            }
+        }
+    }
+    else if (secim == "makas")
+    {
+        if (pcsecim == 1)
+        {
+            cout << "-LOSE-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayar tas secmisti" << endl;
+            cout << "tas makasi yener" << endl;
+            cout << endl;
+            cout << "OYUNA DEVAM ETMEK ISTIYOR MUSUN?" << endl;
+            cout << "evet icin 1 - hayir icin 0" << endl;
+            cin >> secim2;
+            switch (secim2)
+            {
+            case 1:
+                goto a;
+            case 0:
+                return 0;
+            }
+        }
+        else if (pcsecim == 2)
+        {
+            cout << "-WIN-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayar kagit secmisti" << endl;
+            cout << "makas kagiti yener" << endl;
+            cout << endl;
+            cout << "OYUNA DEVAM ETMEK ISTIYOR MUSUN?" << endl;
+            cout << "evet icin 1 - hayir icin 0" << endl;
+            cin >> secim2;
+            switch (secim2)
+            {
+            case 1:
+                goto a;
+            case 0:
+                return 0;
+            }
+        }
+        else if (pcsecim == 3)
+        {
+            cout << "-BERABERE-" << endl;
+            cout << "-------------------" << endl;
+            cout << "bilgisayarda makas secmisti" << endl;
+            cout << endl;
+            goto a;
+        }
+    }
+    else
+    {
+        cout << "secimde hata yaptiniz" << endl;
+        cout << "tekrar secim yapiniz" << endl;
+        cout << endl;
+        goto a;
+    }
+}

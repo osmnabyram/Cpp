@@ -1,0 +1,148 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <windows.h>
+
+using namespace std;
+
+void islem(int x)
+{
+    string kelime;
+    string ipucu;
+
+    switch (x) {
+    case 1:
+        kelime = "hava";
+        ipucu = "IPUCU: cismin hal durumlarindan en hafif olani";
+        break;
+    case 2:
+        kelime = "kalk";
+        ipucu = "IPUCU: +y ekseninde yapilan eglem";
+        break;
+    case 3:
+        kelime = "kork";
+        ipucu = "IPUCU: ilkel duygulardan";
+        break;
+    case 4:
+        kelime = "doku";
+        ipucu = "IPUCU: bir cismin hissiyati";
+        break;
+    case 5:
+        kelime = "taki";
+        ipucu = "IPUCU: kucuk, pahali sus parcası";
+        break;
+    case 6:
+        kelime = "dolu";
+        ipucu = "IPUCU: cismin hacminin kapasitesinin dolma durumu";
+        break;
+    }
+    cout << "bir kelime tutuldu." << endl;
+    cout << ipucu << endl << endl;
+
+    int sayac = 0;
+    string tahmin(kelime.length(), '_');
+
+    while (sayac < 4) {
+        char harf;
+        cout << "bir harf girin: ";
+        cin >> harf;
+
+        int harf_bulundu = false;
+        for (int i = 0; i < kelime.length(); i++) {
+            if (kelime[i] == harf)
+            {
+                tahmin[i] = harf;
+                harf_bulundu = true;
+            }
+        }
+
+        if (harf_bulundu)
+        {
+            cout << "dogru secim, suan ki durum: " << tahmin << endl;
+        }
+        else
+        {
+            ++sayac;
+            cout << "hatali secim, kalan can: " << 4 - sayac << endl;
+
+            switch (sayac) {
+            case 1:
+                cout << " ________" << endl;
+                cout << "|        |" << endl;
+                cout << "|        O" << endl;
+                cout << "|" << endl;
+                cout << "|" << endl;
+                cout << "|" << endl;
+                cout << "|__________" << endl;
+                break;
+            case 2:
+                cout << " ________" << endl;
+                cout << "|        |" << endl;
+                cout << "|        O" << endl;
+                cout << "|        |" << endl;
+                cout << "|" << endl;
+                cout << "|" << endl;
+                cout << "|__________" << endl;
+                break;
+            case 3:
+                cout << " ________" << endl;
+                cout << "|        |" << endl;
+                cout << "|        O" << endl;
+                cout << "|       /|" << endl;
+                cout << "|" << endl;
+                cout << "|" << endl;
+                cout << "|__________" << endl;
+                break;
+            case 4:
+                cout << " ________" << endl;
+                cout << "|        |" << endl;
+                cout << "|        O" << endl;
+                cout << "|       /|\\" << endl;
+                cout << "|       / \\" << endl;
+                cout << "|" << endl;
+                cout << "|__________" << endl;
+                break;
+            default:
+                break;
+            }
+        }
+
+        if (tahmin == kelime)
+        {
+            cout << endl;
+            cout << "KAZANDIN" << endl;
+            cout << "bilgisayarin tuttugu kelime: " << kelime << endl;
+            system("pause");
+        }
+    }
+    cout << endl;
+    cout << "KAYBETTIN" << endl;
+    cout << "bilinmesi gereken kelime: " << kelime << endl;
+    system("pause");
+}
+
+void ses()
+{
+    Beep(330, 250);
+    Beep(392, 250);
+    Beep(440, 500);
+    Beep(392, 500);
+    Beep(0, 250);
+    Beep(440, 250);
+    Beep(494, 250);
+    Beep(523, 500);
+    Beep(0, 250);
+}
+
+int main()
+{
+    cout << "ADAM ASMACA" << endl << endl;
+    ses();
+    srand(time(0) * 139);
+
+    int pcsayideger = 1 + rand() % 6;
+    islem(pcsayideger);
+
+    return 0;
+}

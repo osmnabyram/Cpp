@@ -1,0 +1,145 @@
+#include <iostream>
+#include <math.h>
+#include <windows.h>
+
+using namespace std;
+
+void sescikar()
+{
+    for (int i = 0; i <= 999; i++)
+    {
+        Beep(200, 500);
+    }
+}
+
+void alarmkurma(int hedefSaat, int hedefDakika)
+{
+    int saat, dakika, saniye;
+    SYSTEMTIME time;
+    GetLocalTime(&time);
+    saat = time.wHour;
+    dakika = time.wMinute;
+    saniye = time.wSecond;
+
+    while (true)
+    {
+        if (saat == hedefSaat && dakika == hedefDakika)
+        {
+            sescikar();
+            break;
+        }
+        system("cls");
+        cout << "Saat: " << (saat < 10 ? "0" : "") << saat << ":" << (dakika < 10 ? "0" : "") << dakika << ":" << (saniye < 10 ? "0" : "") << saniye << endl;
+        Sleep(1000);
+        saniye++;
+        if (saniye >= 60)
+        {
+            saniye = 0;
+            dakika++;
+            if (dakika >= 60)
+            {
+                dakika = 0;
+                saat++;
+                if (saat >= 24)
+                {
+                    saat = 0;
+                }
+            }
+        }
+    }
+}
+
+int ekrana(int mevcudsaat, int mevcuddak, int isteksaat, int istekdak)
+{
+    int olusansaat = mevcudsaat + isteksaat;
+    int olusandak = mevcuddak + istekdak;
+
+    while (olusandak >= 60)
+    {
+        olusansaat++;
+        olusandak -= 60;
+    }
+    while (olusansaat >= 24)
+    {
+        olusansaat -= 24;
+    }
+
+    cout << "alarminiz kuruluyor";
+    for (int i = 1; i <= 3; i++)
+    {
+        cout << ".";
+        Sleep(750);
+    }
+    cout << endl;
+    system("cls");
+    Sleep(1000);
+
+    cout << "alarminiz: " << olusansaat << ":" << (olusandak < 10 ? "0" : "") << olusandak << " 'a kuruldu";
+    Sleep(2000);
+
+    alarmkurma(olusansaat, olusandak);
+    return olusansaat;
+}
+
+int main()
+{
+    int mevcudsaat;
+    int mevcuddak;
+    int isteksaat = 0;
+    int istekdak = 0;
+    int alarmTipi;
+
+    cout << "Alarm sistemine hosgeldiniz" << endl;
+    Sleep(2000);
+
+    while (true)
+    {
+        cout << "Mevcud saati sirasiyle saat, dakika cinsinden giriniz" << endl;
+        cin >> mevcudsaat >> mevcuddak;
+        if (mevcudsaat <= 23 && mevcuddak <= 59 && mevcuddak >= 0)
+        {
+            Sleep(800);
+            system("cls");
+            cout << "isleme sokuluyor";
+            for (int i = 1; i <= 3; i++)
+            {
+                cout << ".";
+                Sleep(750);
+            }
+            system("cls");
+            cout << "Alarm tipi seciniz (1: Saat turunden, 2: Dakika turunden)" << endl;
+            cin >> alarmTipi;
+
+            if (alarmTipi == 1)
+            {
+                cout << "kac saat sonrasina alarmin kurulmasini istediginizi giriniz" << endl;
+                cin >> isteksaat;
+            }
+            else if (alarmTipi == 2)
+            {
+                cout << "kac dakika sonrasina alarmin kurulmasini istediginizi giriniz" << endl;
+                cin >> istekdak;
+            }
+            else
+            {
+                system("cls");
+                cout << "hatali alarm tipi secimi" << endl;
+                cout << "tekrar secin" << endl;
+                Sleep(500);
+                continue;
+            }
+            ekrana(mevcudsaat, mevcuddak, isteksaat, istekdak);
+            break;
+        }
+        else
+        {
+            system("cls");
+            cout << "hatali zaman girisi" << endl;
+            Sleep(500);
+            cout << "tekrar giriniz" << endl;
+            Sleep(2000);
+            system("cls");
+        }
+    }
+    return 0;
+}

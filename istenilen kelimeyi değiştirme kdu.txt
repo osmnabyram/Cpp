@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	string metin;
+	string aratilankelime;
+	string degistir;
+	int eminmisin;
+	cout << "metin girin" << endl;
+	getline(cin, metin);
+a:	cout << "metin: " << endl;
+	cout << metin << endl;
+	cout << endl;
+	cout << "degistirilmesini istedigin kelime ne" << endl;
+	getline(cin, aratilankelime);
+	if (metin.find(aratilankelime) != string::npos)
+	{
+		cout << "degistirilmesini istedigin kelime var" << endl;
+		cout << endl;
+	b:		cout << "ne olarak degistirmek istiyorsun" << endl;
+		cin >> degistir;
+		cout << "isleme devam etmek istiyorsan 1 bas" << endl;
+		cout << "sectiginiz kelimeyi " << degistir << " kelimesinden farkli bir seye donusturmek istiyorsan 2 bas" << endl;
+		cin >> eminmisin;
+		size_t pozisyon = metin.find(aratilankelime);
+		switch (eminmisin)
+		{
+		case 1:
+			if (eminmisin == 1)
+			{
+				while (pozisyon != std::string::npos)
+				{
+					metin.replace(pozisyon, aratilankelime.length(), degistir);
+					pozisyon = metin.find(aratilankelime);
+					cout << endl;
+					cout << "degistirilmis metin:" << endl;
+					cout << metin << endl;
+					return 0;
+				}
+			}
+		case 2:
+			goto b;
+			break;
+
+		default:
+			cout << "hatali islem secimi(zoooorrrttt)" << endl;
+			goto b;
+		}
+	}
+	else
+	{
+		cout << "degistirilmesini istedigin kelime mevcud degil (woa woaaa)" << endl;
+		cout << "------------------------------------------------------------" << endl;
+		goto a;
+	}
+	cout << endl;
+	system("pause");
+	return 0;
+}
