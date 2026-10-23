@@ -13,6 +13,10 @@ From basic exercises to object-oriented programming, from classic algorithms to 
 
 ---
 
+<div align="center">
+<img src="assets/how-it-works.svg" alt="How it works: an animated diagram of the tool's core flow." width="820" />
+</div>
+
 ## About
 
 This repository collects a wide range of C++ projects written while learning the language, grouped by theme below.
