@@ -1,41 +1,66 @@
-<p>
-Bu depo, C++ ile geliştirilmiş birbirinden farklı, öğrenme odaklı, algoritmik ve etkileşimli uygulamalardan oluşan geniş bir çalışma arşividir.<br>
-Temel alıştırmalardan nesne tabanlı programlamaya, algoritmalardan küçük oyunlara kadar birçok proje türü içerir.
-</p>
+<div align="center">
 
-<h3></h3> Oyun Mantığı ile Kodlama:</h3>
-<ul>
-  <li>Adam asmaca</li>
-  <li>Sayı tahmin oyunu</li>
-  <li>Basit metin tabanlı mini oyunlar</li>
-  <li>Kullanıcı etkileşimli karar mekanizmaları</li>
-</ul>
+# C++ Projects
 
-<h3> Matematiksel ve Mantıksal Uygulamalar:</h3>
-<ul>
-  <li>Hesap makinesi, faiz ve ortalama hesaplayıcı</li>
-  <li>Tarih, saat, sayaç, kronometre mantığıyla çalışan uygulamalar</li>
-  <li>Kullanıcıdan alınan verilerle işlem yapan programlar</li>
-</ul>
+### A broad, learning-focused archive of C++ work: games, math tools, file handling, algorithms, and OOP.
 
-<h3> Dosya İşlemleri ve Veri Yönetimi:</h3>
-<ul>
-  <li>Dosyaya kayıt, okuma ve güncelleme</li>
-  <li>Basit öğrenci kayıt sistemi</li>
-  <li>Not takip sistemi</li>
-</ul>
+From basic exercises to object-oriented programming, from classic algorithms to small text-based games.
 
-<h3> Algoritma ve Veri Yapıları:</h3>
-<ul>
-  <li>Bubble Sort, Selection Sort, Insertion Sort</li>
-  <li>Binary Search, Linear Search</li>
-  <li>Dizi, pointer ve string manipülasyonları</li>
-</ul>
+![C++](https://img.shields.io/badge/C%2B%2B-Projects-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![Type](https://img.shields.io/badge/Type-Learning%20archive-121212?style=for-the-badge)
 
-<h3> OOP ve C++ Temel Konseptleri:</h3>
-<ul>
-  <li>Class ve Object yapıları</li>
-  <li>Constructor, Encapsulation örnekleri</li>
-  <li>Memory management, pointer kullanımı</li>
-  <li>Fonksiyonlar, prototipler, modüler kod örnekleri</li>
-</ul>
+</div>
+
+---
+
+## About
+
+This repository collects a wide range of C++ projects written while learning the language, grouped by theme below.
+
+---
+
+## Contents
+
+### Game logic
+
+- Hangman
+- Number-guessing game
+- Simple text-based mini games
+- Interactive decision mechanics
+- Tic-tac-toe and a small Minesweeper
+
+### Math and logic
+
+- Calculator, interest and average calculators
+- Date, time, counter, and stopwatch programs
+- Programs that process user-supplied input
+
+### File handling and data
+
+- Writing to, reading from, and updating files
+- A simple student-record system
+- A grade-tracking system
+
+### Algorithms and data structures
+
+- Bubble sort, selection sort, insertion sort
+- Binary search, linear search
+- Array, pointer, and string manipulation
+
+### OOP and core C++
+
+- Classes and objects
+- Constructors and encapsulation
+- Memory management and pointer usage
+- Functions, prototypes, and modular code
+
+---
+
+## Notes
+
+Source files are stored as `.txt` snippets. To run one, copy its contents into a `.cpp` file and compile, for example:
+
+```bash
+g++ program.cpp -o program
+./program
+```
